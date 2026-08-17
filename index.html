@@ -1,0 +1,321 @@
+<!doctype html>
+<!--
+  steadswap.com — the home page.
+
+  Three rules govern what is allowed on this page, in this order.
+
+  1. **Say only what is true.** There is no launch date, no member count, no
+     app-store listing, no press, no testimonial and no "trusted by" anything,
+     because none of those facts exists. Sections that would have needed an
+     invented fact were removed rather than padded. If you are adding to this
+     page, the test is not "is this plausible" — it is "can I point at the
+     thing in the repo or the paperwork that makes this true".
+
+  2. **Nothing to consent to.** No analytics, no cookies, no third-party
+     requests of any kind — the fonts are served from this domain (see the
+     note at the top of styles.css). That is what makes the "no tracking" line
+     below a statement about the page rather than a promise about intent, and
+     it is why this site needs no cookie banner. Adding one script tag from
+     another origin makes that sentence false and the banner necessary.
+
+  3. **Translation is a content swap, not a rewrite.** The first market is
+     Germany, Austria and Switzerland, so a German version is coming. Every
+     visible string sits in its own element carrying a `data-i18n` key, so the
+     translatable surface can be enumerated by machine; no string is baked
+     into CSS or into an image; and the layout is written for text that runs
+     ~30% longer (auto-fit grids, no fixed widths, no nowrap on prose,
+     `hyphens: auto` keyed off the `lang` attribute). A `de/` copy of this
+     file with the strings replaced and `lang="de"` should need no CSS change.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stead — home exchange for pet owners</title>
+    <meta
+      name="description"
+      content="Stead is a home exchange between pet owners. Your pets stay home, cared for by someone like you — and you travel free."
+    />
+    <link rel="canonical" href="https://steadswap.com/" />
+    <link rel="icon" href="favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <!--
+      Preload the two faces above the fold. `crossorigin` is required on font
+      preloads even same-origin, or the browser fetches the file twice.
+    -->
+    <link
+      rel="preload"
+      href="fonts/BricolageGrotesque-Bold.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/InstrumentSans-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stead — home exchange for pet owners" />
+    <meta
+      property="og:description"
+      content="Your pets stay home, cared for by someone like you — and you travel free."
+    />
+    <meta property="og:url" content="https://steadswap.com/" />
+  </head>
+
+  <body>
+    <a class="skip" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+    <header class="site-head">
+      <div class="wrap">
+        <a class="wordmark" href="/">
+          <img src="stead-mark.svg" alt="" width="28" height="28" />
+          <span data-i18n="brand.name">Stead</span>
+        </a>
+        <nav aria-label="Site" class="site-nav">
+          <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a href="terms.html" data-i18n="nav.terms">Terms</a>
+        </nav>
+      </div>
+    </header>
+
+    <!--
+      `tabindex="-1"` is what makes the skip link actually work. A skip link
+      pointing at a non-focusable element moves the browser's sequential
+      navigation start point but does not move screen-reader focus, so the
+      reader carries on announcing the header it was told it had skipped.
+      -1 keeps it out of the tab order while letting it receive focus, and no
+      ring is drawn because programmatic focus does not match :focus-visible.
+    -->
+    <main id="main" tabindex="-1">
+      <!-- ------------------------------------------------------------ hero -->
+      <section class="hero">
+        <div class="wrap">
+          <img
+            class="hero-mark"
+            src="stead-mark.svg"
+            alt=""
+            width="72"
+            height="72"
+          />
+          <p class="eyebrow" data-i18n="hero.eyebrow">Home exchange for pet owners</p>
+          <h1 data-i18n="hero.headline">
+            Your pets stay home, cared for by someone like you — and you travel
+            free.
+          </h1>
+          <p class="lede" data-i18n="hero.lede">
+            Stead is a home exchange between pet owners. You stay in another
+            member's home and look after their animals. They stay in yours and
+            look after yours.
+          </p>
+        </div>
+      </section>
+
+      <!-- ----------------------------------------------------- who it's for -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="who.heading">Who it's for</h2>
+          <p data-i18n="who.body1">
+            People with a cat or a dog who want to travel, and who would rather
+            not put their animal in a kennel or hand a key to a stranger who
+            has never owned one.
+          </p>
+          <p data-i18n="who.body2">
+            Every swap is between two verified animal owners — that is the
+            condition for confirming one, not a preference on a listing. So the
+            person feeding your cat at seven in the morning already knows what
+            that morning looks like.
+          </p>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------- how it works -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="how.heading">How it works</h2>
+          <!--
+            `role="list"` is redundant markup that is not redundant in
+            practice: Safari removes list semantics from any list whose
+            `list-style` is `none`, so VoiceOver stops announcing "list, 3
+            items" and stops giving each step its position. These two lists
+            are styled as cards, so both need it. The visible number badge
+            stays `aria-hidden` — the list position already carries the order,
+            and announcing both says "one, one".
+          -->
+          <ol class="steps" role="list">
+            <li>
+              <span class="step-n" aria-hidden="true">1</span>
+              <h3 data-i18n="how.step1.title">Get verified</h3>
+              <p data-i18n="how.step1.body">
+                Four checks: who you are, that the home is yours, that the
+                animals are yours, and the care pledge. The three that need
+                evidence are read by a person, not a machine — and sending a
+                document is not passing a check.
+              </p>
+            </li>
+            <li>
+              <span class="step-n" aria-hidden="true">2</span>
+              <h3 data-i18n="how.step2.title">Find a home that fits</h3>
+              <p data-i18n="how.step2.body">
+                Dates that overlap, a place you want to go, and animals you are
+                able to look after. Browsing, listing your home and asking for
+                a swap are free.
+              </p>
+            </li>
+            <li>
+              <span class="step-n" aria-hidden="true">3</span>
+              <h3 data-i18n="how.step3.title">Swap</h3>
+              <p data-i18n="how.step3.body">
+                You stay in their home and care for their animals. They stay in
+                yours and care for yours. A swap can only be confirmed when all
+                four checks are green on both sides.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------ difference -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="diff.heading">The difference is an obligation, not a filter</h2>
+          <p data-i18n="diff.body">
+            Other home exchanges have a pet-friendly setting — a preference on
+            a listing saying an animal is allowed in the house. On Stead a swap
+            can only be confirmed between two verified animal owners, and
+            caring for the other household's animals is the exchange itself
+            rather than a favour attached to it.
+          </p>
+
+          <ul class="points" role="list">
+            <li>
+              <h3 data-i18n="diff.verified.title">Both sides, all four checks</h3>
+              <p data-i18n="diff.verified.body">
+                Identity, home, pet ownership and the care pledge — all four,
+                on both sides, before a swap can be confirmed. The documents
+                are read by a person, and the app never shows a tick for one
+                nobody has read.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="diff.address.title">Your address stays private</h3>
+              <p data-i18n="diff.address.body">
+                Your street address is withheld by the database, not by the
+                interface. A member who is not your confirmed counterparty
+                cannot read it, whatever the app asks for.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="diff.credits.title">Host 1 night = travel 1 night</h3>
+              <p data-i18n="diff.credits.body">
+                That's it — that is the whole credit formula. Nothing to
+                convert, and no points jargon to learn.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="diff.free.title">The paywall is at the handshake</h3>
+              <p data-i18n="diff.free.body">
+                Browsing, listing a home, adding pets, verifying, asking for a
+                swap and messaging a host are free and stay free. A membership
+                is what turns an accepted swap into a confirmed one.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="diff.ai.title">Nothing sends itself</h3>
+              <p data-i18n="diff.ai.body">
+                Four features use AI, each labelled where it appears. Every one
+                produces a draft you approve, edit or throw away. No decision
+                about your account is made by a machine alone.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="diff.support.title">Talk to a person</h3>
+              <p data-i18n="diff.support.body">
+                Support is a person, not a bot and not a help centre. Stead is
+                run by one person, so you are writing to them directly.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------------------- status -->
+      <!--
+        The honest answer to "where do I download this". There is no store
+        listing, no date, and no waitlist — a signup form would collect
+        personal data, which needs a published privacy policy and a backend
+        this static site deliberately does not have.
+      -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="status.heading">Where things stand</h2>
+          <div class="note">
+            <p data-i18n="status.body1">
+              <strong>Stead is not open yet.</strong> The app is in
+              development. It is not in any app store, there is no launch date
+              to announce, and there is nothing here to sign up for. When there
+              is, it will be on this page.
+            </p>
+            <p data-i18n="status.body2">
+              Stead opens first in Germany, Austria and Switzerland.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------- who runs -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="runs.heading">Who runs Stead</h2>
+          <p data-i18n="runs.body">
+            Stead is operated by SummAIze, LLC — an unfamiliar name on a
+            familiar product, and the one that appears on anything legal.
+          </p>
+
+          <dl class="entity">
+            <dt data-i18n="runs.company.label">Company</dt>
+            <dd data-i18n="runs.company.value">
+              SummAIze, LLC — a limited liability company formed in the State
+              of Delaware, USA
+            </dd>
+
+            <dt data-i18n="runs.address.label">Business address</dt>
+            <dd>
+              <address data-i18n="runs.address.value">
+                169 Madison Avenue, New York, NY 10016, United States
+              </address>
+            </dd>
+          </dl>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------------- privacy -->
+      <section>
+        <div class="wrap">
+          <h2 data-i18n="track.heading">This site does not track you</h2>
+          <p data-i18n="track.body">
+            No analytics, no cookies, no advertising, and no requests to any
+            other company — the typefaces are served from this domain rather
+            than from a font network. There is nothing here to consent to,
+            which is why you were not asked.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <p class="colophon">
+          <span data-i18n="foot.entity">Stead is operated by SummAIze, LLC.</span>
+        </p>
+        <nav aria-label="Legal">
+          <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a href="terms.html" data-i18n="nav.terms">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

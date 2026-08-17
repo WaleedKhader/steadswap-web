@@ -1,0 +1,659 @@
+/*
+ * steadswap.com — Open Window, on the web.
+ *
+ * The palette is the app's design tokens, transcribed once into custom
+ * properties. **This file is the only place a raw hex may live on the web**,
+ * exactly as the token module is in the app; a literal colour in a page is the same
+ * review failure here as it is there.
+ *
+ * Every value below is copied from a named token. The comment on each says
+ * which, so a token change in the app has one place to land here.
+ *
+ * ## Fonts are self-hosted, and that is deliberate
+ *
+ * The brief said "webfont CDN". These are served from `web/fonts/` instead,
+ * for three reasons that all point the same way:
+ *
+ *   1. The first market is Germany. LG München I (3 O 17493/20, 20 Jan 2022)
+ *      awarded damages against a site that embedded Google Fonts from
+ *      Google's CDN, because doing so transmits the visitor's IP address to a
+ *      US company without consent. That is precisely the thing this site is
+ *      supposed not to do.
+ *   2. "No tracking, no cookie banner needed because there should be nothing
+ *      to consent to." A third-party font request is something to consent to.
+ *      Self-hosting means this site makes **zero** third-party requests, so
+ *      the claim is structural rather than aspirational.
+ *   3. The files are already in this repository under the SIL Open Font
+ *      Licence (`web/fonts/*-OFL.txt`), which permits redistribution. No new
+ *      dependency, no new vendor, one less thing that can go down.
+ *
+ * Only three faces ship — Bricolage Bold for display, Instrument Sans regular
+ * and bold for everything else. Bricolage Regular and DM Mono are in the app
+ * and have no job here; loading them would be 140KB nobody reads.
+ */
+
+/* ------------------------------------------------------------------ tokens */
+
+:root {
+  /* Grounds — window.snow, window.paper, bg.panel */
+  --snow: #f8fafc;
+  --paper: #ffffff;
+  --panel: #f6f1e7;
+  --blue-soft: #edf2ff;
+
+  /* Ink — window.midnight, window.inkMuted */
+  --midnight: #14213d;
+  --ink-muted: #53627a;
+
+  /* One meaning per colour.
+     semantic.link (trust.base) is links and only links.
+     semantic.brand (identity.active) is the Stead signature and nothing else.
+     semantic.action (window.voyage) is a filled primary action — this site has
+     none, so it is deliberately unused rather than borrowed for decoration. */
+  --link: #0e5a5e;
+  --link-hover: #0a4144;
+  --brand: #a05226;
+  --sun: #ffcf70;
+
+  /* Structure — window.line, trust.tintBg/tintBorder */
+  --line: #dce3ec;
+  --teal-tint: #e7f0ef;
+  --teal-tint-border: #d3e2e0;
+
+  /* elevation.window */
+  --lift: rgba(20, 33, 61, 0.1);
+
+  /* 4pt scale — `space` tokens */
+  --s-xs: 4px;
+  --s-sm: 8px;
+  --s-md: 12px;
+  --s-lg: 16px;
+  --s-xl: 20px;
+  --s-2xl: 24px;
+  --s-3xl: 32px;
+  --s-4xl: 48px;
+  --s-5xl: 72px;
+
+  /* radius */
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  --measure: 34rem;
+  --page: 60rem;
+}
+
+/* ------------------------------------------------------------------- fonts */
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('fonts/BricolageGrotesque-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('fonts/InstrumentSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('fonts/InstrumentSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------- reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--snow);
+  color: var(--midnight);
+  font-family: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+ * German runs ~30% longer than English and compounds badly at narrow widths.
+ * `hyphens: auto` needs the `lang` attribute on <html> to pick the right
+ * dictionary, which is why every page sets it — a `de/` translation gets
+ * correct hyphenation from the same rule, with no CSS change.
+ */
+p,
+li,
+dd {
+  hyphens: auto;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --------------------------------------------------------------- structure */
+
+.wrap {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--s-2xl);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--paper);
+  color: var(--link);
+  padding: var(--s-md) var(--s-lg);
+  border-radius: 0 0 var(--r-md) 0;
+  font-weight: 700;
+  z-index: 10;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+/* ------------------------------------------------------------------ header */
+
+.site-head {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-head .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-lg);
+  flex-wrap: wrap;
+  min-height: 68px;
+  padding-block: var(--s-md);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-sm);
+  /* The mark is 28px; the link around it still has to be a 44px target. */
+  min-height: 44px;
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.wordmark img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+/* The nav links are ordinary links; teal is the link colour app-wide. */
+.site-nav {
+  display: flex;
+  gap: var(--s-lg);
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--link);
+  font-size: 0.9375rem;
+  /* 44px minimum touch target — WCAG 2.5.5 / EU EAA, MIN_TARGET */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--s-xs);
+}
+
+/* ------------------------------------------------------------------- links */
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/*
+ * A visible focus ring, on every interactive thing, in a colour that clears
+ * 3:1 against both grounds it can land on. `:focus-visible` rather than
+ * `:focus` so a mouse click does not draw one, but a Tab press always does.
+ */
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* -------------------------------------------------------------------- type */
+
+h1,
+h2,
+h3 {
+  font-family: 'Bricolage Grotesque', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.16;
+  margin: 0 0 var(--s-lg);
+  color: var(--midnight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 1.35rem + 2.9vw, 3.25rem);
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+}
+
+h3 {
+  font-size: 1.1875rem;
+  line-height: 1.3;
+  margin-bottom: var(--s-sm);
+}
+
+p {
+  margin: 0 0 var(--s-lg);
+  max-width: var(--measure);
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  color: var(--ink-muted);
+  max-width: 38rem;
+}
+
+/*
+ * Uppercase section kicker — `type.windowEyebrow`. Letter-spaced because
+ * uppercase without tracking is hard to read, and kept above 11px because
+ * small caps at the app's 11.5px do not survive a desktop viewing distance.
+ */
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin: 0 0 var(--s-md);
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+/* ---------------------------------------------------------------- sections */
+
+section {
+  padding-block: var(--s-5xl);
+  border-top: 1px solid var(--line);
+}
+
+section:first-of-type {
+  border-top: 0;
+}
+
+.hero {
+  padding-block: clamp(var(--s-4xl), 8vw, 6rem) var(--s-5xl);
+}
+
+.hero-mark {
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--s-2xl);
+}
+
+.hero h1 {
+  max-width: 20ch;
+}
+
+/* --------------------------------------------------------------- the steps */
+
+/*
+ * `auto-fit` + `minmax` rather than a fixed column count: German step text is
+ * longer, and this reflows to two columns or one on its own rather than
+ * needing a second breakpoint written for the translation.
+ */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.steps li {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-2xl);
+  box-shadow: 0 1px 2px var(--lift);
+}
+
+.step-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--midnight);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: var(--s-md);
+}
+
+.steps p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 1rem;
+}
+
+/* ---------------------------------------------------------------- prose UL */
+
+.points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.points p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------------------------ panels */
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--r-xl);
+  padding: var(--s-3xl);
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+.note {
+  background: var(--teal-tint);
+  border: 1px solid var(--teal-tint-border);
+  border-radius: var(--r-lg);
+  padding: var(--s-xl) var(--s-2xl);
+}
+
+.note > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------- who runs */
+
+.entity {
+  margin: 0;
+  display: grid;
+  gap: var(--s-md) var(--s-2xl);
+}
+
+.entity dt {
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.entity dd {
+  margin: 0 0 var(--s-lg);
+  max-width: var(--measure);
+}
+
+address {
+  font-style: normal;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.site-foot {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding-block: var(--s-3xl);
+  font-size: 0.9375rem;
+}
+
+.site-foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-lg) var(--s-2xl);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.site-foot nav {
+  display: flex;
+  gap: var(--s-xl);
+  flex-wrap: wrap;
+}
+
+.site-foot a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.colophon {
+  color: var(--ink-muted);
+  margin: 0;
+  max-width: 30rem;
+}
+
+/* ================================================================== legal ==
+ *
+ * The two generated documents. They share this stylesheet so the policy a
+ * regulator opens is visibly the same product as the page above it.
+ */
+
+.legal-head {
+  padding-block: var(--s-4xl) var(--s-2xl);
+}
+
+.legal-head h1 {
+  font-size: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+}
+
+.doc {
+  padding-bottom: var(--s-5xl);
+}
+
+.doc h2 {
+  font-size: 1.375rem;
+  margin-top: var(--s-4xl);
+  padding-top: var(--s-2xl);
+  border-top: 1px solid var(--line);
+}
+
+.doc h3 {
+  margin-top: var(--s-2xl);
+}
+
+.doc p,
+.doc li {
+  max-width: var(--measure);
+}
+
+.doc ul {
+  padding-left: 1.15em;
+  margin: 0 0 var(--s-lg);
+}
+
+/*
+ * The contents list.
+ *
+ * A list of links is navigation, not prose, so the 44px target rule applies to
+ * each entry (`MIN_TARGET`; WCAG 2.5.8's inline-link
+ * exception covers a link inside a sentence, which this is not). At 44px a
+ * twelve-section policy would be a very tall column on a phone, so the list
+ * also becomes multi-column as soon as there is room — the same `auto-fit`
+ * reflow the home page uses, and it absorbs longer German headings for free.
+ */
+.doc nav[aria-labelledby] ul {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0 var(--s-2xl);
+}
+
+.doc nav[aria-labelledby] li {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.doc nav[aria-labelledby] a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: var(--s-sm);
+}
+
+.doc li {
+  margin-bottom: var(--s-sm);
+}
+
+.doc blockquote {
+  margin: 0 0 var(--s-lg);
+  padding: var(--s-lg) var(--s-xl);
+  background: var(--panel);
+  border-radius: var(--r-md);
+}
+
+.doc blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.doc code {
+  font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--blue-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/*
+ * A wide table on a narrow phone is the one thing in these documents that
+ * cannot reflow. It scrolls inside its own box rather than pushing the page
+ * sideways — and `tabindex="0"` on the wrapper is what makes that scroll
+ * reachable from a keyboard, which is a WCAG 2.1.1 requirement people
+ * routinely miss on scrollable regions.
+ */
+.table-scroll {
+  overflow-x: auto;
+  margin: 0 0 var(--s-xl);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.table-scroll:focus-visible {
+  outline: 3px solid var(--link);
+  outline-offset: 2px;
+}
+
+.doc table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.doc th,
+.doc td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--s-md) var(--s-lg);
+  border-bottom: 1px solid var(--line);
+}
+
+.doc th {
+  font-weight: 700;
+  background: var(--snow);
+  white-space: nowrap;
+}
+
+.doc tr:last-child th,
+.doc tr:last-child td {
+  border-bottom: 0;
+}
+
+/*
+ * The unpublished state. Not an error and not a warning — a plain statement
+ * that this document is not in force yet, in the product's own voice.
+ */
+.pending {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--sun);
+  border-radius: var(--r-md);
+  padding: var(--s-2xl);
+  margin-bottom: var(--s-2xl);
+}
+
+.pending > :last-child {
+  margin-bottom: 0;
+}
+
+/* ----------------------------------------------------------- print & prefs */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .site-head,
+  .site-foot,
+  .skip {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+
+  .doc h2 {
+    break-after: avoid;
+  }
+}
