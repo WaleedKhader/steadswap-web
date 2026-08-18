@@ -170,6 +170,11 @@ dd {
 }
 
 
+.nowrap {
+  white-space: nowrap;
+}
+
+
 
 .wrap {
   width: min(100% - 2.5rem, var(--page));
@@ -253,6 +258,11 @@ h2 + .lede {
   .band-head {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
+}
+
+
+.band-head--tall {
+  align-items: start;
 }
 
 .band-head .lede {
@@ -369,6 +379,13 @@ h2 + .lede {
 }
 
 
+@media (max-width: 40rem) {
+  .site-nav .quiet {
+    display: none;
+  }
+}
+
+
 
 .hero {
   padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 6vw, 4.5rem);
@@ -463,6 +480,17 @@ h2 + .lede {
 }
 
 
+@media (max-width: 30rem) {
+  .hero-stage {
+    padding: clamp(2.5rem, 10vw, 3.25rem) clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .hero-stage .phone {
+    max-width: 15rem;
+  }
+}
+
+
 
 
 .phone {
@@ -524,8 +552,10 @@ h2 + .lede {
 }
 
 @media (min-width: 52rem) {
+  
   .screens {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 30rem));
+    justify-content: center;
     align-items: stretch;
   }
 }
@@ -533,7 +563,8 @@ h2 + .lede {
 
 .screens .shot {
   height: 100%;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .screens figcaption {
@@ -584,6 +615,8 @@ h2 + .lede {
   font-size: clamp(1.25rem, 1.9vw + 0.7rem, 1.75rem);
   line-height: 1.42;
   letter-spacing: -0.012em;
+  
+  text-wrap: pretty;
 }
 
 .problem p + p {
@@ -594,7 +627,8 @@ h2 + .lede {
 .problem .turn {
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-left: clamp(1rem, 2.5vw, 1.75rem);
-  border-left: 3px solid var(--field);
+  
+  border-left: 3px solid var(--brand);
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: clamp(1.5rem, 2.6vw + 0.75rem, 2.25rem);
@@ -720,7 +754,8 @@ h2 + .lede {
 .swap-cross svg {
   width: 4.5rem;
   height: 1.75rem;
-  color: var(--field);
+  
+  color: var(--brand);
 }
 
 
@@ -731,10 +766,23 @@ h2 + .lede {
     height: 3.5rem;
   }
 
+  
   .swap-cross {
     grid-auto-flow: column;
     align-items: center;
-    gap: var(--s-lg);
+    justify-content: center;
+    gap: var(--s-3xl);
+  }
+
+  .swap-cross .leg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-xs);
+  }
+
+  .swap-cross .leg svg {
+    order: -1;
   }
 }
 
@@ -785,7 +833,8 @@ h2 + .lede {
 
 .steps p {
   color: var(--ink-muted);
-  font-size: 0.9875rem;
+  
+  font-size: 0.9375rem;
 }
 
 
@@ -868,7 +917,8 @@ h2 + .lede {
 }
 
 .price-lines .free {
-  color: var(--link);
+  
+  color: var(--midnight);
   font-weight: 700;
 }
 
@@ -970,7 +1020,8 @@ h2 + .lede {
   font-size: clamp(2rem, 4.4vw + 0.5rem, 3.5rem);
   line-height: 1.03;
   letter-spacing: -0.03em;
-  max-width: 18ch;
+  
+  max-width: 20ch;
   color: var(--mark);
 }
 
@@ -990,14 +1041,6 @@ h2 + .lede {
 
 .closing .status strong {
   font-weight: 700;
-}
-
-.closing .market {
-  font-size: 1.375rem;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--mark);
 }
 
 
@@ -1029,6 +1072,7 @@ h2 + .lede {
   letter-spacing: -0.028em;
   max-width: 20ch;
   font-variant-numeric: tabular-nums;
+  text-wrap: balance;
 }
 
 
@@ -1190,14 +1234,16 @@ h2 + .lede {
   gap: var(--s-md);
 }
 
+
+
+
 @media print {
   .statement,
   .closing,
   .closing .status,
   .statement p,
   .closing h2,
-  .closing .status p,
-  .closing .market {
+  .closing .status p {
     background: none;
     color: var(--midnight);
   }
