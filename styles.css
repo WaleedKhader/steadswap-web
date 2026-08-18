@@ -508,10 +508,29 @@ h2 + .lede {
 }
 
 
-.shot--wide {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  max-width: 34rem;
-  margin-inline: auto;
+.screens {
+  margin-top: clamp(2.25rem, 5vw, 3.25rem);
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+@media (min-width: 52rem) {
+  .screens {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+  }
+}
+
+
+.screens .shot {
+  height: 100%;
+  align-content: start;
+}
+
+.screens figcaption {
+  margin-top: auto;
+  padding-top: var(--s-md);
 }
 
 .shot figcaption {

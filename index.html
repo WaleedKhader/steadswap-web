@@ -105,12 +105,13 @@
           <div class="hero-stage">
             <img class="stage-mark" src="stead-mark.svg" alt="" width="220" height="220" />
             <figure class="shot">
-              <div class="screen">
+              <div class="phone">
+                
                 <img
-                  src="shots/search.webp"
-                  width="760"
-                  height="738"
-                  alt="The search screen in the Stead app, headed Where could you go?, with a first step labelled Place reading Anywhere members have opened a home, a city search field, and a selected row reading Anywhere, every member home."
+                  src="shots/arrival.webp"
+                  width="640"
+                  height="1239"
+                  alt="The Stead app's first screen: a photograph of two travellers wheeling suitcases to a front door while a golden retriever sits on the step, under the words Your pets stay home. You travel."
                 />
               </div>
             </figure>
@@ -308,21 +309,35 @@
             </li>
           </ol>
 
-          <figure class="shot shot--wide">
-            <div class="screen">
-              <img
-                src="shots/dates.webp"
-                width="760"
-                height="558"
-                alt="The dates step in the Stead app, offering four date shapes — any dates, exact dates, give or take, and a whole month — above a note reading Keep every open window in view."
-              />
-            </div>
-            <figcaption data-i18n="steps.shot.caption">
-              Step two, in the app. How firmly your dates are set is a choice,
-              because the whole thing turns on two households being free at
-              once.
-            </figcaption>
-          </figure>
+          <div class="screens">
+            <figure class="shot">
+              <div class="screen">
+                <img
+                  src="shots/search.webp"
+                  width="700"
+                  height="679"
+                  alt="The search screen in the Stead app, headed Where could you go?, with a first step labelled Place reading Anywhere members have opened a home, above a city search field."
+                />
+              </div>
+              <figcaption data-i18n="steps.shot.where">
+                Step one. Somewhere you want to go.
+              </figcaption>
+            </figure>
+            <figure class="shot">
+              <div class="screen">
+                <img
+                  src="shots/dates.webp"
+                  width="700"
+                  height="514"
+                  alt="The dates step in the Stead app, offering four date shapes — any dates, exact dates, give or take, and a whole month — above a note reading Keep every open window in view."
+                />
+              </div>
+              <figcaption data-i18n="steps.shot.when">
+                Step two. How firmly your dates are set is a choice, because the
+                whole thing turns on two households being free at once.
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -421,15 +436,15 @@
             <div class="phone phone--sm">
               
               <img
-                src="shots/signin.webp"
-                width="620"
-                height="1200"
-                alt="The sign-in screen in the Stead app, offering a password, a emailed code and Google as three ways into the same account, above a line reading: your data runs swaps, it is never sold and never used for advertising."
+                src="shots/verified.webp"
+                width="560"
+                height="1084"
+                alt="A screen from the Stead app showing a traveller shaking hands with a couple at their front door while a border collie watches, under the words Every swap is between fully verified members."
               />
             </div>
             <figcaption data-i18n="trust.shot.caption">
-              Three ways in, one account — and the line underneath them, which
-              is the whole data position in a sentence.
+              The promise in its exact form. Not "every member is verified" —
+              the checks are required of both sides of a swap.
             </figcaption>
           </figure>
         </div>
@@ -437,8 +452,8 @@
 
       
       <section class="band band--paper">
-        <div class="wrap">
-          <div class="measure-wide">
+        <div class="wrap split split--flip">
+          <div>
             <p class="eyebrow" data-i18n="care.eyebrow">While you're away</p>
             <h2 data-i18n="care.heading">They'll know the routine</h2>
             <p class="lede" data-i18n="care.lede">
@@ -453,9 +468,21 @@
               every draft is one a person approves, edits or throws away.
               Nothing sends itself, no decision about your account is made by a
               machine alone, and emergency contacts are never AI-written — the
-              handbook the model fills in has no field for them.
-            </p>
-          </div>
+\1
+          <figure class="shot">
+            <div class="phone phone--sm">
+              
+              <img
+                src="shots/handbook.webp"
+                width="560"
+                height="820"
+                alt="A screen from the Stead app showing someone photographing a golden retriever lying on a rug in a sunlit living room, under the words Their routine, written down."
+              />
+            </div>
+            <figcaption data-i18n="care.shot.caption">
+              A daily update being taken, in the app.
+            </figcaption>
+          </figure>
 
         </div>
       </section>
