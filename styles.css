@@ -192,6 +192,10 @@ dd {
   max-width: var(--measure);
 }
 
+.measure-wide {
+  max-width: 46rem;
+}
+
 .lede {
   font-size: clamp(1.125rem, 1.6vw + 0.6rem, 1.375rem);
   line-height: 1.55;
@@ -479,12 +483,35 @@ h2 + .lede {
 }
 
 
+.screen {
+  width: 100%;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--snow);
+  box-shadow:
+    0 0 0 1px rgba(20, 33, 61, 0.08),
+    0 24px 48px -24px rgba(20, 33, 61, 0.45);
+}
+
+.screen img {
+  display: block;
+  width: 100%;
+}
+
+
 .shot {
   margin: 0;
   width: 100%;
   display: grid;
   justify-items: center;
   gap: var(--s-xl);
+}
+
+
+.shot--wide {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  max-width: 34rem;
+  margin-inline: auto;
 }
 
 .shot figcaption {
