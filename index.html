@@ -1,32 +1,5 @@
 <!doctype html>
-<!--
-  steadswap.com — the home page.
 
-  Three rules govern what is allowed on this page, in this order.
-
-  1. **Say only what is true.** There is no launch date, no member count, no
-     app-store listing, no press, no testimonial and no "trusted by" anything,
-     because none of those facts exists. Sections that would have needed an
-     invented fact were removed rather than padded. If you are adding to this
-     page, the test is not "is this plausible" — it is "can I point at the
-     thing in the repo or the paperwork that makes this true".
-
-  2. **Nothing to consent to.** No analytics, no cookies, no third-party
-     requests of any kind — the fonts are served from this domain (see the
-     note at the top of styles.css). That is what makes the "no tracking" line
-     below a statement about the page rather than a promise about intent, and
-     it is why this site needs no cookie banner. Adding one script tag from
-     another origin makes that sentence false and the banner necessary.
-
-  3. **Translation is a content swap, not a rewrite.** The first market is
-     Germany, Austria and Switzerland, so a German version is coming. Every
-     visible string sits in its own element carrying a `data-i18n` key, so the
-     translatable surface can be enumerated by machine; no string is baked
-     into CSS or into an image; and the layout is written for text that runs
-     ~30% longer (auto-fit grids, no fixed widths, no nowrap on prose,
-     `hyphens: auto` keyed off the `lang` attribute). A `de/` copy of this
-     file with the strings replaced and `lang="de"` should need no CSS change.
--->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -34,34 +7,32 @@
     <title>Stead — home exchange for pet owners</title>
     <meta
       name="description"
-      content="Stead is a home exchange between pet owners. Your pets stay home, cared for by someone like you — and you travel free."
+      content="Stead is a home exchange between pet owners. Your pets stay home, cared for by another owner — and you travel free. Opening first in Germany, Austria and Switzerland."
     />
     <link rel="canonical" href="https://steadswap.com/" />
     <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="styles.css" />
-    <!--
-      Preload the two faces above the fold. `crossorigin` is required on font
-      preloads even same-origin, or the browser fetches the file twice.
-    -->
+    
     <link
       rel="preload"
-      href="fonts/BricolageGrotesque-Bold.ttf"
+      href="fonts/bricolage-bold.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="fonts/InstrumentSans-Regular.ttf"
+      href="fonts/instrument-regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossorigin
     />
+    <meta name="theme-color" content="#c75b2b" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Stead — home exchange for pet owners" />
     <meta
       property="og:description"
-      content="Your pets stay home, cared for by someone like you — and you travel free."
+      content="Your pets stay home, cared for by another owner — and you travel free."
     />
     <meta property="og:url" content="https://steadswap.com/" />
   </head>
@@ -72,235 +43,676 @@
     <header class="site-head">
       <div class="wrap">
         <a class="wordmark" href="/">
-          <img src="stead-mark.svg" alt="" width="28" height="28" />
+          <img src="stead-mark.svg" alt="" width="32" height="32" />
           <span data-i18n="brand.name">Stead</span>
         </a>
         <nav aria-label="Site" class="site-nav">
-          <a href="privacy.html" data-i18n="nav.privacy">Privacy</a>
-          <a href="terms.html" data-i18n="nav.terms">Terms</a>
+          <a href="#how" data-i18n="nav.how">How it works</a>
+          <a href="#trust" data-i18n="nav.trust">Trust</a>
+          <a href="#price" data-i18n="nav.price">What it costs</a>
+          <a href="#faq" data-i18n="nav.faq">Questions</a>
+          <a class="quiet" href="privacy.html" data-i18n="nav.privacy">Privacy</a>
+          <a class="quiet" href="terms.html" data-i18n="nav.terms">Terms</a>
         </nav>
       </div>
     </header>
 
-    <!--
-      `tabindex="-1"` is what makes the skip link actually work. A skip link
-      pointing at a non-focusable element moves the browser's sequential
-      navigation start point but does not move screen-reader focus, so the
-      reader carries on announcing the header it was told it had skipped.
-      -1 keeps it out of the tab order while letting it receive focus, and no
-      ring is drawn because programmatic focus does not match :focus-visible.
-    -->
+    
     <main id="main" tabindex="-1">
-      <!-- ------------------------------------------------------------ hero -->
+      
       <section class="hero">
         <div class="wrap">
-          <img
-            class="hero-mark"
-            src="stead-mark.svg"
-            alt=""
-            width="72"
-            height="72"
-          />
-          <p class="eyebrow" data-i18n="hero.eyebrow">Home exchange for pet owners</p>
-          <h1 data-i18n="hero.headline">
-            Your pets stay home, cared for by someone like you — and you travel
-            free.
-          </h1>
-          <p class="lede" data-i18n="hero.lede">
-            Stead is a home exchange between pet owners. You stay in another
-            member's home and look after their animals. They stay in yours and
-            look after yours.
+          <div>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Home exchange for pet owners</p>
+            <h1 data-i18n="hero.headline">Your pets stay home. You travel free.</h1>
+            <p class="lede" data-i18n="hero.lede">
+              You stay in another owner's home and look after their animals.
+              They stay in yours and look after yours. Nobody's dog goes to a
+              kennel, and nobody's cat wakes up somewhere strange.
+            </p>
+            <div class="hero-meta">
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span data-i18n="hero.meta.market">
+                  Opening first in <b>Germany, Austria and Switzerland</b>
+                </span>
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2v20" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+                <span data-i18n="hero.meta.fees">
+                  <b>No booking fee</b>, service fee or cleaning fee
+                </span>
+              </span>
+              <span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                <span data-i18n="hero.meta.status">
+                  <b>Not open yet</b> — the app is still in development
+                </span>
+              </span>
+            </div>
+          </div>
+
+          
+          <div class="hero-stage">
+            <img class="stage-mark" src="stead-mark.svg" alt="" width="220" height="220" />
+            <figure class="shot">
+              <div class="phone">
+                
+                <img
+                  src="shots/arrival.webp"
+                  width="660"
+                  height="1467"
+                  alt="The Stead app's first screen: a photograph of two travellers and a dog at a front door, under the words Your pets stay home. You travel."
+                />
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      
+      
+      <section class="band band--cream problem">
+        <img class="band-mark" src="stead-glyph.svg" alt="" width="420" height="420" />
+        <div class="wrap">
+          <h2 data-i18n="problem.heading">The week before the flight</h2>
+          <p data-i18n="problem.body1">
+            It starts about a week out. You do the arithmetic — the kennel, the
+            sitter your neighbour used once, the friend who says yes and then
+            goes quiet. You picture the drop-off.
+          </p>
+          <p data-i18n="problem.body2">
+            So you shorten the trip. Or you drive instead of fly. Or you don't
+            go.
+          </p>
+          <p class="turn" data-i18n="problem.turn">
+            The answer to that was never a better kennel. It's not moving the
+            animal at all.
           </p>
         </div>
       </section>
 
-      <!-- ----------------------------------------------------- who it's for -->
-      <section>
+      
+      <section class="band" id="how">
         <div class="wrap">
-          <h2 data-i18n="who.heading">Who it's for</h2>
-          <p data-i18n="who.body1">
-            People with a cat or a dog who want to travel, and who would rather
-            not put their animal in a kennel or hand a key to a stranger who
-            has never owned one.
-          </p>
-          <p data-i18n="who.body2">
-            Every swap is between two verified animal owners — that is the
-            condition for confirming one, not a preference on a listing. So the
-            person feeding your cat at seven in the morning already knows what
-            that morning looks like.
+          <div class="band-head">
+            <div>
+              <p class="eyebrow" data-i18n="swap.eyebrow">What Stead actually is</p>
+              <h2 data-i18n="swap.heading">
+                Pet-friendly is a filter. This is an obligation.
+              </h2>
+            </div>
+            <p class="lede" data-i18n="swap.lede">
+              Other home exchanges have a pet-friendly setting — a box on a
+              listing saying an animal is allowed in the house. Stead is the
+              other thing. Both households have animals, both are occupied
+              for the same nights, and looking after the other family's
+              animals is the exchange itself rather than a favour attached
+              to it.
+            </p>
+          </div>
+
+          
+          <div class="swap">
+            <div class="swap-home">
+              <svg class="roof" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              </svg>
+              <h3 data-i18n="swap.yours.title">Your home</h3>
+              <div class="row">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                <p>
+                  <strong data-i18n="swap.yours.who">They stay here</strong>
+                  <span data-i18n="swap.yours.body">
+                    The other owner, in your kitchen, feeding your animals on
+                    your schedule.
+                  </span>
+                </p>
+              </div>
+              <p class="stays">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="4" r="2" />
+                  <circle cx="18" cy="8" r="2" />
+                  <circle cx="20" cy="16" r="2" />
+                  <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+                </svg>
+                <span data-i18n="swap.yours.stays">Your animals never leave</span>
+              </p>
+            </div>
+
+            <p class="swap-cross">
+              <span class="leg">
+                <span data-i18n="swap.cross.you">You travel</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+              <span class="leg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M19 12H5" />
+                  <path d="m12 19-7-7 7-7" />
+                </svg>
+                <span data-i18n="swap.cross.they">They travel</span>
+              </span>
+            </p>
+
+            <div class="swap-home">
+              <svg class="roof" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+                <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              </svg>
+              <h3 data-i18n="swap.theirs.title">Their home</h3>
+              <div class="row">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                <p>
+                  <strong data-i18n="swap.theirs.who">You stay here</strong>
+                  <span data-i18n="swap.theirs.body">
+                    You, in their kitchen, feeding their animals on theirs.
+                  </span>
+                </p>
+              </div>
+              <p class="stays">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="4" r="2" />
+                  <circle cx="18" cy="8" r="2" />
+                  <circle cx="20" cy="16" r="2" />
+                  <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+                </svg>
+                <span data-i18n="swap.theirs.stays">Their animals never leave</span>
+              </p>
+            </div>
+          </div>
+
+          
+          <p class="swap-note" data-i18n="swap.note">
+            Every swap runs in both directions at the same time, which is what
+            keeps both homes occupied and both sets of animals where they live.
+            There is no balance to build up, nothing to convert and no points
+            jargon to learn.
           </p>
         </div>
       </section>
 
-      <!-- ---------------------------------------------------- how it works -->
-      <section>
+      
+      
+      <section class="statement">
         <div class="wrap">
-          <h2 data-i18n="how.heading">How it works</h2>
-          <!--
-            `role="list"` is redundant markup that is not redundant in
-            practice: Safari removes list semantics from any list whose
-            `list-style` is `none`, so VoiceOver stops announcing "list, 3
-            items" and stops giving each step its position. These two lists
-            are styled as cards, so both need it. The visible number badge
-            stays `aria-hidden` — the list position already carries the order,
-            and announcing both says "one, one".
-          -->
+          <img src="stead-mark.svg" alt="" width="52" height="52" />
+          <p data-i18n="statement.line">Host 1 night = travel 1 night. That's it.</p>
+        </div>
+      </section>
+
+      
+      <section class="band band--paper">
+        <div class="wrap">
+          <div class="band-head">
+            <div>
+              <p class="eyebrow" data-i18n="steps.eyebrow">Start to finish</p>
+              <h2 data-i18n="steps.heading">How a swap happens</h2>
+            </div>
+            <p class="lede" data-i18n="steps.lede">
+              Three of them, and the last only opens once the first is finished
+              on both sides.
+            </p>
+          </div>
+          
           <ol class="steps" role="list">
             <li>
               <span class="step-n" aria-hidden="true">1</span>
-              <h3 data-i18n="how.step1.title">Get verified</h3>
-              <p data-i18n="how.step1.body">
-                Four checks: who you are, that the home is yours, that the
-                animals are yours, and the care pledge. The three that need
-                evidence are read by a person, not a machine — and sending a
-                document is not passing a check.
+              <h3 data-i18n="steps.one.title">Get verified</h3>
+              
+              <p data-i18n="steps.one.body">
+                Four checks — who you are, that the home is yours, that the
+                animals are yours, and the care pledge. Three of them need
+                evidence and a person reads it. Nothing turns green on its own,
+                and sending a document is not the same as passing a check.
               </p>
             </li>
             <li>
               <span class="step-n" aria-hidden="true">2</span>
-              <h3 data-i18n="how.step2.title">Find a home that fits</h3>
-              <p data-i18n="how.step2.body">
-                Dates that overlap, a place you want to go, and animals you are
-                able to look after. Browsing, listing your home and asking for
-                a swap are free.
+              <h3 data-i18n="steps.two.title">Find a home that fits</h3>
+              <p data-i18n="steps.two.body">
+                Somewhere you want to go, dates that overlap yours, and animals
+                you are able to look after. Browsing, listing your home, adding
+                your pets and asking for a swap are all free.
               </p>
             </li>
             <li>
               <span class="step-n" aria-hidden="true">3</span>
-              <h3 data-i18n="how.step3.title">Swap</h3>
-              <p data-i18n="how.step3.body">
-                You stay in their home and care for their animals. They stay in
-                yours and care for yours. A swap can only be confirmed when all
-                four checks are green on both sides.
+              <h3 data-i18n="steps.three.title">Swap</h3>
+              <p data-i18n="steps.three.body">
+                You are in their home with their animals; they are in yours
+                with yours. A swap can only be confirmed once all four checks
+                are green on <em>both</em> sides.
               </p>
             </li>
           </ol>
         </div>
       </section>
 
-      <!-- ------------------------------------------------------ difference -->
-      <section>
-        <div class="wrap">
-          <h2 data-i18n="diff.heading">The difference is an obligation, not a filter</h2>
-          <p data-i18n="diff.body">
-            Other home exchanges have a pet-friendly setting — a preference on
-            a listing saying an animal is allowed in the house. On Stead a swap
-            can only be confirmed between two verified animal owners, and
-            caring for the other household's animals is the exchange itself
-            rather than a favour attached to it.
-          </p>
+      
+      <section class="band" id="trust">
+        <div class="wrap split">
+          <div>
+            <p class="eyebrow" data-i18n="trust.eyebrow">Why it's safe enough to try</p>
+            <h2 data-i18n="trust.heading">You're letting someone in. So are they.</h2>
+            <p class="lede" data-i18n="trust.lede">
+              At the same time, for the same nights, with their own animals on
+              the line. That symmetry is the single biggest difference between
+              this and handing a key to somebody you are paying.
+            </p>
 
-          <ul class="points" role="list">
-            <li>
-              <h3 data-i18n="diff.verified.title">Both sides, all four checks</h3>
-              <p data-i18n="diff.verified.body">
-                Identity, home, pet ownership and the care pledge — all four,
-                on both sides, before a swap can be confirmed. The documents
-                are read by a person, and the app never shows a tick for one
-                nobody has read.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="diff.address.title">Your address stays private</h3>
-              <p data-i18n="diff.address.body">
-                Your street address is withheld by the database, not by the
-                interface. A member who is not your confirmed counterparty
-                cannot read it, whatever the app asks for.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="diff.credits.title">Host 1 night = travel 1 night</h3>
-              <p data-i18n="diff.credits.body">
-                That's it — that is the whole credit formula. Nothing to
-                convert, and no points jargon to learn.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="diff.free.title">The paywall is at the handshake</h3>
-              <p data-i18n="diff.free.body">
-                Browsing, listing a home, adding pets, verifying, asking for a
-                swap and messaging a host are free and stay free. A membership
-                is what turns an accepted swap into a confirmed one.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="diff.ai.title">Nothing sends itself</h3>
-              <p data-i18n="diff.ai.body">
-                Four features use AI, each labelled where it appears. Every one
-                produces a draft you approve, edit or throw away. No decision
-                about your account is made by a machine alone.
-              </p>
-            </li>
-            <li>
-              <h3 data-i18n="diff.support.title">Talk to a person</h3>
-              <p data-i18n="diff.support.body">
-                Support is a person, not a bot and not a help centre. Stead is
-                run by one person, so you are writing to them directly.
-              </p>
-            </li>
-          </ul>
+            <ul class="points" role="list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                <div>
+                  <h3 data-i18n="trust.checks.title">Both sides, all four checks</h3>
+                  <p data-i18n="trust.checks.body">
+                    Identity, home, pet ownership and the care pledge — all
+                    four, on both sides, before a swap can be confirmed. A
+                    person reads the documents behind three of them, and the
+                    app never shows a tick nobody has granted.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <div>
+                  <h3 data-i18n="trust.address.title">Your address stays private</h3>
+                  <p data-i18n="trust.address.body">
+                    Your street address is withheld by the database, not by the
+                    interface. A member who is not your confirmed counterparty
+                    cannot read it, whatever the app asks for.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <div>
+                  <h3 data-i18n="trust.reviews.title">Reviews are double-blind</h3>
+                  <p data-i18n="trust.reviews.body">
+                    Both sides write within fourteen days, and nothing
+                    publishes until both are in or the window closes. Neither
+                    of you sees the other's review before writing your own, so
+                    nobody is marking a review they have already read.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+                  <path d="M18 17V9" />
+                  <path d="M13 17V5" />
+                  <path d="M8 17v-3" />
+                </svg>
+                <div>
+                  <h3 data-i18n="trust.signals.title">Reliability is computed, not written</h3>
+                  <p data-i18n="trust.signals.body">
+                    Response rate, swaps completed and cancellations are worked
+                    out by the system. The member they describe cannot edit
+                    them, and no figure appears at all until there is real
+                    history behind it.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                </svg>
+                <div>
+                  <h3 data-i18n="trust.human.title">Talk to a person</h3>
+                  <p data-i18n="trust.human.body">
+                    Support is a person, not a bot and not a help centre. Stead
+                    is run by one person, so you are writing to them directly.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <figure class="shot">
+            <div class="phone phone--sm">
+              
+              <img
+                src="shots/verify.webp"
+                width="560"
+                height="1244"
+                alt="The verification screen in the Stead app, showing government ID, your home, pet ownership and the member pledge each marked verified, above a panel reading Documents are reviewed by a person."
+              />
+            </div>
+            <figcaption data-i18n="trust.shot.caption">
+              The four checks, in the app. A green tick is one a person granted.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <!-- ---------------------------------------------------------- status -->
-      <!--
-        The honest answer to "where do I download this". There is no store
-        listing, no date, and no waitlist — a signup form would collect
-        personal data, which needs a published privacy policy and a backend
-        this static site deliberately does not have.
-      -->
-      <section>
+      
+      <section class="band band--paper">
+        <div class="wrap split split--flip">
+          <div>
+            <p class="eyebrow" data-i18n="care.eyebrow">While you're away</p>
+            <h2 data-i18n="care.heading">They'll know the routine</h2>
+            <p class="lede" data-i18n="care.lede">
+              Because you wrote it down. Every animal has a care handbook —
+              feeding, medication, walks, the small things only you know. During
+              a stay the traffic runs the other way: a photograph and a note
+              about your animal, in your home, arriving while you're somewhere
+              else.
+            </p>
+            <p data-i18n="care.body">
+              Both are drafted with AI, labelled wherever they appear, and
+              every draft is one a person approves, edits or throws away.
+              Nothing sends itself, no decision about your account is made by a
+              machine alone, and emergency contacts are never AI-written — the
+              handbook the model fills in has no field for them.
+            </p>
+          </div>
+
+          <figure class="shot">
+            <div class="phone phone--sm">
+              
+              <img
+                src="shots/handbook.webp"
+                width="560"
+                height="815"
+                alt="A screen from the Stead app showing someone photographing a dog lying on a rug, under the words Their routine, written down."
+              />
+            </div>
+            <figcaption data-i18n="care.shot.caption">
+              Care handbooks and daily updates, from the app.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      
+      <section class="band" id="price">
+        <div class="wrap split">
+          <div>
+            <p class="eyebrow" data-i18n="price.eyebrow">What it costs</p>
+            <h2 data-i18n="price.heading">Free until the handshake</h2>
+            <p class="lede" data-i18n="price.lede">
+              Browsing, listing your home, adding your pets, getting verified,
+              asking for a swap and talking to a host are free and stay free. A
+              membership is what turns an accepted swap into a confirmed one —
+              and both sides need one.
+            </p>
+
+            <dl class="price-lines">
+              <div class="line">
+                <dt data-i18n="price.browse.label">Browse, list, verify, ask, message</dt>
+                <dd class="free" data-i18n="price.browse.value">Free</dd>
+              </div>
+              <div class="line">
+                <dt data-i18n="price.booking.label">Booking fee</dt>
+                <dd class="free" data-i18n="price.booking.value">None</dd>
+              </div>
+              <div class="line">
+                <dt data-i18n="price.service.label">Service fee</dt>
+                <dd class="free" data-i18n="price.service.value">None</dd>
+              </div>
+              <div class="line">
+                <dt data-i18n="price.cleaning.label">Cleaning fee</dt>
+                <dd class="free" data-i18n="price.cleaning.value">None</dd>
+              </div>
+              <div class="line">
+                <dt data-i18n="price.care.label">Pet care</dt>
+                <dd data-i18n="price.care.value">Mutual</dd>
+              </div>
+              
+              <div class="line">
+                <dt data-i18n="price.membership.label">Membership, to confirm a swap</dt>
+                <dd class="tnum" data-i18n="price.membership.value">
+                  €139 a year in Europe · $149 in the United States
+                </dd>
+              </div>
+            </dl>
+
+            <p class="price-note" data-i18n="price.founding">
+              Founding members keep that rate for life. Cancelling stops the
+              next renewal and takes nothing away — your listing, pets, reviews
+              and verifications all stay, and browsing carries on free.
+            </p>
+            <p class="price-note" data-i18n="price.guarantee">
+              Any membership carries the <strong>Stead Member Guarantee</strong>:
+              reimbursement for home damage and vet costs up to a stated cap per
+              swap, shown in your own currency in the app. It is
+              <strong>discretionary and it is not insurance</strong> — it sits
+              behind your own home and pet cover, not in front of it.
+            </p>
+          </div>
+
+          <figure class="shot">
+            <div class="phone phone--sm">
+              
+              <img
+                src="shots/fees.webp"
+                width="560"
+                height="1244"
+                alt="The membership screen in the Stead app, itemising booking fee, service fee and cleaning fee as zero, pet care as mutual, above the Stead Member Guarantee marked discretionary, not insurance."
+              />
+            </div>
+            <figcaption data-i18n="price.shot.caption">
+              What you pay, itemised, from the app. Figures appear in your own
+              currency — this capture is from a device in the United States.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      
+      <section class="band band--cream" id="faq">
         <div class="wrap">
-          <h2 data-i18n="status.heading">Where things stand</h2>
-          <div class="note">
-            <p data-i18n="status.body1">
-              <strong>Stead is not open yet.</strong> The app is in
-              development. It is not in any app store, there is no launch date
-              to announce, and there is nothing here to sign up for. When there
-              is, it will be on this page.
+          <div class="band-head">
+            <div>
+              <p class="eyebrow" data-i18n="faq.eyebrow">Before you ask</p>
+              <h2 data-i18n="faq.heading">The questions people actually ask</h2>
+            </div>
+            <p class="lede" data-i18n="faq.lede">
+              Answered the way the person who built this would answer them,
+              because that is who would be answering them.
             </p>
-            <p data-i18n="status.body2">
-              Stead opens first in Germany, Austria and Switzerland.
-            </p>
+          </div>
+
+          <div class="faq-list">
+            <div>
+              <h3 data-i18n="faq.stranger.q">A stranger, in my house?</h3>
+              <p data-i18n="faq.stranger.a1">
+                Not a stranger to the situation. They have handed you their own
+                home and their own animals for the same nights, which is a very
+                different position from someone being paid to hold your keys.
+              </p>
+              <p data-i18n="faq.stranger.a2">
+                Before a swap confirms, both of you have passed the same four
+                checks, and a person has read the documents behind three of
+                them. Your address stays hidden until the swap is confirmed.
+              </p>
+            </div>
+
+            <div>
+              <h3 data-i18n="faq.wrong.q">What if something goes wrong?</h3>
+              <p data-i18n="faq.wrong.a1">
+                Every confirmed swap names a backup plan before it confirms, so
+                there is an answer written down before anyone needs it. Messages
+                are screened for the patterns scams follow, and anything flagged
+                is marked in the thread.
+              </p>
+              <p data-i18n="faq.wrong.a2">
+                Membership carries the Stead Member Guarantee — discretionary,
+                not insurance, and behind your own cover rather than in front
+                of it. And support is a person you write to.
+              </p>
+            </div>
+
+            <div>
+              <h3 data-i18n="faq.city.q">What if nobody's in my city?</h3>
+              <p data-i18n="faq.city.a1">
+                Then Stead isn't useful to you yet, and we would rather say so
+                than pretend otherwise. An exchange is only worth anything at
+                the density where somebody wants your dates and your city, which
+                is why this opens in three countries rather than everywhere.
+              </p>
+              <p data-i18n="faq.city.a2">
+                Browsing is free and will stay free, so you can find out whether
+                that is true for you before paying anything.
+              </p>
+            </div>
+
+            <div>
+              <h3 data-i18n="faq.owner.q">Do I have to own a pet?</h3>
+              <p data-i18n="faq.owner.a1">
+                To confirm a swap, yes. Pet ownership is one of the four checks
+                and it applies to both sides, which is the whole point — the
+                person feeding your cat at seven in the morning already knows
+                what that morning looks like.
+              </p>
+              <p data-i18n="faq.owner.a2">
+                You can browse, list your home and get verified without one.
+              </p>
+            </div>
+
+            <div>
+              <h3 data-i18n="faq.sitting.q">Is this house-sitting?</h3>
+              <p data-i18n="faq.sitting.a1">
+                No. Nobody is paid, nobody is working, and it runs in both
+                directions at once. On a sitting platform one person has a
+                house and the other has a job; here both of you are owners with
+                the same thing at stake for the same nights.
+              </p>
+            </div>
+
+            <div>
+              <h3 data-i18n="faq.insurance.q">What about insurance?</h3>
+              <p data-i18n="faq.insurance.a1">
+                Listing a home means confirming it is covered by valid home or
+                renters insurance — your own policy is the first line, and the
+                Stead Member Guarantee sits behind it.
+              </p>
+              <p data-i18n="faq.insurance.a2">
+                Pet insurance is encouraged and not required. Requiring it would
+                exclude most owners in most of the world.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- -------------------------------------------------------- who runs -->
-      <section>
+      
+      <section class="band band--paper">
         <div class="wrap">
-          <h2 data-i18n="runs.heading">Who runs Stead</h2>
-          <p data-i18n="runs.body">
-            Stead is operated by SummAIze, LLC — an unfamiliar name on a
-            familiar product, and the one that appears on anything legal.
-          </p>
+          <div class="band-head">
+            <div>
+              <p class="eyebrow" data-i18n="runs.eyebrow">Who's behind it</p>
+              <h2 data-i18n="runs.heading">Who runs Stead</h2>
+            </div>
+            <p class="lede" data-i18n="runs.body">
+              Stead is operated by SummAIze, LLC — an unfamiliar name on a
+              familiar product, and the one that appears on anything legal.
+              It is run by one person, which is also why support is a
+              person.
+            </p>
+          </div>
 
           <dl class="entity">
-            <dt data-i18n="runs.company.label">Company</dt>
-            <dd data-i18n="runs.company.value">
-              SummAIze, LLC — a limited liability company formed in the State
-              of Delaware, USA
-            </dd>
+            <div>
+              <dt data-i18n="runs.company.label">Company</dt>
+              <dd data-i18n="runs.company.value">
+                SummAIze, LLC — a limited liability company formed in the State
+                of Delaware, USA
+              </dd>
+            </div>
+            <div>
+              <dt data-i18n="runs.address.label">Business address</dt>
+              <dd>
+                <address data-i18n="runs.address.value">
+                  169 Madison Avenue, New York, NY 10016, United States
+                </address>
+              </dd>
+            </div>
+            <div>
+              <dt data-i18n="runs.market.label">First market</dt>
+              <dd data-i18n="runs.market.value">
+                Germany, Austria and Switzerland
+              </dd>
+            </div>
 
-            <dt data-i18n="runs.address.label">Business address</dt>
-            <dd>
-              <address data-i18n="runs.address.value">
-                169 Madison Avenue, New York, NY 10016, United States
-              </address>
-            </dd>
+            
           </dl>
         </div>
       </section>
 
-      <!-- --------------------------------------------------------- privacy -->
-      <section>
+      
+      
+      <section class="closing">
+        <div class="wrap">
+          <img src="stead-mark.svg" alt="" width="72" height="72" />
+          <h2 data-i18n="closing.heading">
+            Your pets stay home. You travel free.
+          </h2>
+
+          <div class="status">
+            <p data-i18n="closing.status1">
+              <strong>Stead is not open yet.</strong> The app is built. It is
+              not in any app store, there is no launch date to announce, and
+              there is nothing on this page to sign up for — a sign-up form
+              would collect personal data, and we are not collecting any before
+              the privacy policy it needs is published.
+            </p>
+            <p data-i18n="closing.status2">
+              When Stead opens, it opens here.
+            </p>
+          </div>
+
+          <p class="market" data-i18n="closing.market">
+            Germany, Austria and Switzerland first.
+          </p>
+        </div>
+      </section>
+
+      
+      <section class="quiet-band">
         <div class="wrap">
           <h2 data-i18n="track.heading">This site does not track you</h2>
           <p data-i18n="track.body">
             No analytics, no cookies, no advertising, and no requests to any
             other company — the typefaces are served from this domain rather
-            than from a font network. There is nothing here to consent to,
-            which is why you were not asked.
+            than from a font network, and every picture on this page is a
+            screenshot of the app rather than a photograph of anybody's home.
+            There is nothing here to consent to, which is why you were not
+            asked.
           </p>
         </div>
       </section>
