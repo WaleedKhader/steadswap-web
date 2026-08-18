@@ -21,6 +21,10 @@
   --brand: #a05226;
 
   
+  --action: #275dff;
+  --action-deep: #1742c6;
+
+  
   --field: #c75b2b;
   --field-deep: #8f3d17;
   --mark: #fff3e4;
@@ -413,6 +417,28 @@ h2 + .lede {
 .hero .lede {
   margin-top: var(--s-2xl);
   max-width: 34ch;
+}
+
+.hero-cta {
+  margin-top: var(--s-3xl);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  background: var(--action);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--action-deep);
+  color: var(--paper);
 }
 
 .hero-meta {
@@ -1025,22 +1051,13 @@ h2 + .lede {
   color: var(--mark);
 }
 
-.closing .status {
-  background: var(--field-deep);
-  border-radius: var(--r-xl);
-  padding: clamp(1.5rem, 3vw, 2rem);
-  max-width: 40rem;
-  text-align: left;
-  display: grid;
-  gap: var(--s-md);
-}
 
-.closing .status p {
+.closing-line {
+  font-size: clamp(1.5rem, 2vw + 0.9rem, 1.875rem);
+  line-height: 1.35;
   color: var(--mark);
-}
-
-.closing .status strong {
-  font-weight: 700;
+  max-width: 26ch;
+  text-wrap: balance;
 }
 
 
@@ -1240,10 +1257,9 @@ h2 + .lede {
 @media print {
   .statement,
   .closing,
-  .closing .status,
   .statement p,
   .closing h2,
-  .closing .status p {
+  .closing-line {
     background: none;
     color: var(--midnight);
   }
