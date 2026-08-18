@@ -423,6 +423,26 @@ h2 + .lede {
   margin-top: var(--s-3xl);
 }
 
+
+.store-badges {
+  margin-top: var(--s-3xl);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-lg);
+}
+
+.store-badges img {
+  height: 3rem;
+  width: auto;
+  display: block;
+}
+
+
+.closing .store-badges {
+  justify-content: center;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1037,7 +1057,8 @@ h2 + .lede {
   gap: var(--s-2xl);
 }
 
-.closing img {
+
+.closing .wrap > img {
   width: 4.5rem;
   height: 4.5rem;
 }
