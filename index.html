@@ -29,6 +29,8 @@
       crossorigin
     />
     <meta name="theme-color" content="#c75b2b" />
+    
+    <script src="motion.js" defer></script>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Stead — home exchange between pet owners" />
     <meta
@@ -79,6 +81,28 @@
               <a class="btn" href="#how" data-i18n="hero.cta">See how it works</a>
             </p>
             
+          </div>
+
+          
+          <div class="hero-stage">
+            
+            <div class="stage-ground" aria-hidden="true">
+              <img class="stage-mark" src="stead-mark.svg" alt="" width="220" height="220" />
+            </div>
+            <figure class="shot">
+              <div class="phone">
+                
+                <img
+                  src="shots/arrival.webp"
+                  width="640"
+                  height="1239"
+                  alt="The Stead app's first screen: a photograph of two travellers wheeling suitcases to a front door while a golden retriever stands with them at the door, above the words Your pets stay home. You travel."
+                />
+              </div>
+            </figure>
+          </div>
+
+          
             <div class="hero-meta">
               <span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -111,23 +135,6 @@
                 </span>
               </span>
             </div>
-          </div>
-
-          
-          <div class="hero-stage">
-            <img class="stage-mark" src="stead-mark.svg" alt="" width="220" height="220" />
-            <figure class="shot">
-              <div class="phone">
-                
-                <img
-                  src="shots/arrival.webp"
-                  width="640"
-                  height="1239"
-                  alt="The Stead app's first screen: a photograph of two travellers wheeling suitcases to a front door while a golden retriever stands with them at the door, above the words Your pets stay home. You travel."
-                />
-              </div>
-            </figure>
-          </div>
         </div>
       </section>
 
@@ -208,6 +215,7 @@
               </p>
             </div>
 
+            
             <p class="swap-cross">
               <span class="leg">
                 <span data-i18n="swap.cross.you">You travel</span>
@@ -215,6 +223,12 @@
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
+                <span class="traveler" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </span>
               </span>
               <span class="leg">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -222,6 +236,12 @@
                   <path d="m12 19-7-7 7-7" />
                 </svg>
                 <span data-i18n="swap.cross.they">They travel</span>
+                <span class="traveler" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </span>
               </span>
             </p>
 
@@ -273,7 +293,7 @@
         <div class="wrap">
           <img src="stead-mark.svg" alt="" width="52" height="52" />
           
-          <p data-i18n="statement.line">Host 1&nbsp;night = travel 1&nbsp;night. That's it.</p>
+          <p data-i18n="statement.line">Host 1&nbsp;night = travel&nbsp;1&nbsp;night. That's it.</p>
         </div>
       </section>
 
@@ -522,8 +542,7 @@
             </p>
           </div>
 
-          <div class="measure-wide">
-            <dl class="price-lines">
+          <dl class="price-lines">
               <div class="line">
                 <dt data-i18n="price.browse.label">Browse, list, verify, ask, message</dt>
                 <dd class="free" data-i18n="price.browse.value">Free</dd>
@@ -548,12 +567,14 @@
               <div class="line">
                 <dt data-i18n="price.membership.label">Membership, to confirm a swap</dt>
                 <dd class="tnum" data-i18n="price.membership.value">
-                  <span class="nowrap">€139 a year in Europe</span> ·
+                  <span class="nowrap">€139 a year in Europe</span>
+                  <span class="sep" aria-hidden="true">·</span>
                   <span class="nowrap">$149 a year in the United States</span>
                 </dd>
               </div>
-            </dl>
+          </dl>
 
+          <div class="measure-wide">
             
             <p class="price-note" data-i18n="price.founding">
               Founding members keep that rate for life. Cancelling stops the
@@ -675,7 +696,9 @@
       </section>
 
       
-      <section class="band band--paper">
+      <section class="band band--paper band--runs">
+        
+        <img class="seam-mark" src="stead-glyph.svg" alt="" aria-hidden="true" width="420" height="420" />
         <div class="wrap">
           <div class="band-head">
             <div>
